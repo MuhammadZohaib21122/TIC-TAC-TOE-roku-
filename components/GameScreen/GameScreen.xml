@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="GameScreen" extends="Group">
+
+    <script type="text/brightscript" uri="GameScreen.brs" />
+
+
+    <customization suspendhandler="customSuspend" />
+    <customization resumehandler="customResume" />
+    <interface>
+
+
+        <field id="rowListData" type="node" />
+        <field id="exitApp" type="boolean" alwaysNotify="true" />
+
+
+    </interface>
+
+    <children>
+
+
+        <Poster width="1920" height="1080" uri="pkg:/images/background.png" />
+        <Label
+            id="testLabel"
+            height="44"
+            width="0"
+            color = "0x232323"
+            font="font:MediumBoldSystemFont"
+            text="TIC TAC TOE"
+            horizAlign="left"
+            vertAlign="center"
+            translation="[618,100]">
+            <Font role="font" uri="pkg:/components/Fonts/ChangaOne-Regular.ttf" size="150" />
+        </Label>
+
+        <Group id="boxGroup" visible="true" translation="[650,200]">
+
+            <Button id="box1" focusable="true" iconUri=""
+                focusFootprintBitmapUri="pkg:/images/boxUF.png"
+                focusedIconUri="" text="" visible="true" translation="[0,0]"
+                showFocusFootprint="true"
+                maxWidth="200" height="200" minWidth="200"
+                focusBitmapUri="pkg:/images/boxF.png" />
+
+            <Button id="box2" focusable="true" iconUri=""
+                focusFootprintBitmapUri="pkg:/images/boxUF.png"
+                focusedIconUri="" text="" visible="true" translation="[220,0]"
+                showFocusFootprint="true"
+                maxWidth="200" height="200" minWidth="200"
+                focusBitmapUri="pkg:/images/boxF.png" />
+
+            <Button id="box3" focusable="true" iconUri=""
+                focusFootprintBitmapUri="pkg:/images/boxUF.png"
+                focusedIconUri="" text="" visible="true" translation="[440,0]"
+                showFocusFootprint="true"
+                maxWidth="200" height="200" minWidth="200"
+                focusBitmapUri="pkg:/images/boxF.png" />
+
+            <Button id="box4" focusable="true" iconUri=""
+                focusFootprintBitmapUri="pkg:/images/boxUF.png"
+                focusedIconUri="" text="" visible="true" translation="[0,220]"
+                showFocusFootprint="true"
+                maxWidth="200" height="200" minWidth="200"
+                focusBitmapUri="pkg:/images/boxF.png" />
+
+            <Button id="box5" focusable="true" iconUri=""
+                focusFootprintBitmapUri="pkg:/images/boxUF.png"
+                focusedIconUri="" text="" visible="true" translation="[220,220]"
+                showFocusFootprint="true"
+                maxWidth="200" height="200" minWidth="200"
+                focusBitmapUri="pkg:/images/boxF.png" />
+
+            <Button id="box6" focusable="true" iconUri=""
+                focusFootprintBitmapUri="pkg:/images/boxUF.png"
+                focusedIconUri="" text="" visible="true" translation="[440,220]"
+                showFocusFootprint="true"
+                maxWidth="200" height="200" minWidth="200"
+                focusBitmapUri="pkg:/images/boxF.png" />
+
+            <Button id="box7" focusable="true" iconUri=""
+                focusFootprintBitmapUri="pkg:/images/boxUF.png"
+                focusedIconUri="" text="" visible="true" translation="[0,440]"
+                showFocusFootprint="true"
+                maxWidth="200" height="200" minWidth="200"
+                focusBitmapUri="pkg:/images/boxF.png" />
+
+            <Button id="box8" focusable="true" iconUri=""
+                focusFootprintBitmapUri="pkg:/images/boxUF.png"
+                focusedIconUri="" text="" visible="true" translation="[220,440]"
+                showFocusFootprint="true"
+                maxWidth="200" height="200" minWidth="200"
+                focusBitmapUri="pkg:/images/boxF.png" />
+
+            <Button id="box9" focusable="true" iconUri=""
+                focusFootprintBitmapUri="pkg:/images/boxUF.png"
+                focusedIconUri="" text="" visible="true" translation="[440,440]"
+                showFocusFootprint="true"
+                maxWidth="200" height="200" minWidth="200"
+                focusBitmapUri="pkg:/images/boxF.png" />
+
+        </Group>
+
+
+    </children>
+</component>

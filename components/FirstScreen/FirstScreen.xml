@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="FirstScreen" extends="Group">
+
+    <script type="text/brightscript" uri="FirstScreen.brs" />
+    <!-- <script type="text/brightscript" uri="UILogic/ShowFirePlaceLogic.brs" />
+    <script type="text/brightscript" uri="UILogic/ScreenStack.brs" /> -->
+
+
+    <customization suspendhandler="customSuspend" />
+    <customization resumehandler="customResume" />
+    <interface>
+
+        <field id="inputArgs" type="assocarray" />
+        <field id="launchArgs" type="assocarray" />
+        <field id="rowListData" type="node" />
+
+        <!-- <function name="ShowFirePlaceScreen" />
+        <function name="CloseScreen" /> -->
+
+        <field id="exitApp" type="boolean" alwaysNotify="true" />
+
+
+    </interface>
+
+    <children>
+
+        <Group id="menuGroup">
+            <Poster uri="pkg:/images/background.png" translation="[0,0]" width="1920" height="1080" />
+            <!-- <Poster uri="pkg:/images/emojipuzzle.png" translation="[324,40]" width="1272"
+                height="250" /> -->
+
+            <Label
+                id="testLabel"
+                height="44"
+                width="0"
+                font="font:MediumBoldSystemFont"
+                text="TIC TAC TOE"
+                horizAlign="left"
+                vertAlign="center"
+                translation="[618,100]">
+                <Font role="font" uri="pkg:/components/Fonts/ChangaOne-Regular.ttf" size="150" />
+            </Label>
+
+
+            <Button focusBitmapUri="pkg:/images/focus/CloseButtonFocus.png" iconUri=""
+                focusedIconUri="" focusFootprintBitmapUri="" id="setting_menu" minWidth="139"
+                maxWidth="139"
+                height="139" translation="[1750,15]">
+                <Poster uri="pkg:/images/subscription/setting_btn.png" width="118" height="118"
+                    translation="[10 , 13]" />
+            </Button>
+
+            <Button focusBitmapUri="pkg:/images/focus/CloseButtonFocus.png" iconUri=""
+                focusedIconUri="" focusFootprintBitmapUri="" id="subscription_menu" minWidth="139"
+                maxWidth="139"
+                height="139" translation="[25,15]">
+                <Poster uri="pkg:/images/subscription/buyAppButton.png" width="118" height="118"
+                    translation="[10 , 13]" />
+            </Button>
+
+            <Button focusBitmapUri="pkg:/images/focus/Home screen play focus.png" iconUri=""
+                focusedIconUri="" focusFootprintBitmapUri="" id="playBtnMenu" minWidth="379"
+                maxWidth="379"
+                height="155" translation="[768,524]">
+                <Poster uri="pkg:/images/menu/play.png" width="340" height="116"
+                    translation="[18,18]" />
+            </Button>
+
+            <Button focusBitmapUri="pkg:/images/focus/Home screen play focus.png" iconUri=""
+                focusedIconUri="" focusFootprintBitmapUri="" id="settingBtnMenu" minWidth="379"
+                maxWidth="379" height="155" translation="[768,686]">
+                <Poster uri="pkg:/images/menu/settings.png" width="340" height="116"
+                    translation="[18,18]" />
+            </Button>
+
+            <Button focusBitmapUri="pkg:/images/focus/Home screen play focus.png" iconUri=""
+                focusedIconUri="" focusFootprintBitmapUri="" id="exitBtnMenu" minWidth="379"
+                maxWidth="379"
+                height="155" translation="[768,848]">
+                <Poster uri="pkg:/images/menu/exit.png" width="340" height="116"
+                    translation="[18,18]" />
+            </Button>
+        </Group>
+<!-- 
+        <Group id="settingGroup" visible="false">
+            <Poster uri="pkg:/images/background.png" translation="[0,0]" width="1920" height="1080" />
+            <label text="SETTINGS" translation="[688,25]" color="#D37531" width="543" height="136">
+
+                <Font role="font" uri="pkg:/components/Fonts/ChangaOne-Regular.ttf" size="128" />
+
+            </label>
+            <Poster id="BrightQR" uri="pkg:/images/BirghtQR.png" visible="false"
+                translation="[683,722]"
+                width="554" height="236" />
+
+            <label id="buttonsDescriptionText" translation="[691,984]" height="54">
+                <Font role="font" uri="pkg:/components/Fonts/ChangaOne-Regular.ttf" size="36" />
+
+
+            </label>
+            <button id="homeButton" showFocusFootprint="false" iconUri="" focusedIconUri=""
+                focusFootprintBitmapUri="" focusBitmapUri="pkg:/images/smallFocus.png" height="100"
+                maxWidth="100" minWidth="100" translation="[40,40]">
+                <Poster uri="pkg:/images/homeBtn.png" width="92" height="92" translation="[4,4]" />
+
+            </button>
+
+            <label id="musicTextLabel" text="MUSIC:ON" translation="[331,370]" color="#C8C5FF"
+                width="178"
+                height="38">
+
+                <Font role="font" uri="pkg:/components/Fonts/ChangaOne-Regular.ttf" size="36" />
+
+            </label>
+
+            <Button id="musicButton" translation="[310,426]" maxWidth="222" minWidth="222"
+                height="222"
+                iconUri="" focusedIconUri="" focusBitmapUri="pkg:/images/settingsFocus.png"
+                focusFootprintBitmapUri="" showFocusFootprint="false">
+                <Poster id="musicButtonPoster" uri="" width="208" height="208"
+                    translation="[6,6]" />
+            </Button>
+
+            <label id="soundTextLabel" text="SOUND:ON" translation="[592,370]" color="#C8C5FF"
+                width="190"
+                height="38">
+
+                <Font role="font" uri="pkg:/components/Fonts/ChangaOne-Regular.ttf" size="36" />
+
+            </label>
+
+            <button id="soundButton" translation="[580,426]" maxWidth="222" minWidth="222"
+                height="222"
+                iconUri="" focusedIconUri="" focusBitmapUri="pkg:/images/settingsfocus.png"
+                focusFootprintBitmapUri="" showFocusFootprint="false">
+                <Poster id="soundButtonPoster" uri="" width="208" height="208"
+                    translation="[6,6]" />
+
+            </button>
+
+            <label text="RATE US" translation="[892,370]" color="#C8C5FF" width="168" height="38">
+
+                <Font role="font" uri="pkg:/components/Fonts/ChangaOne-Regular.ttf" size="36" />
+
+            </label>
+
+            <button id="rateButton" translation="[850,426]" maxWidth="222" minWidth="222"
+                height="222"
+                iconUri="" focusedIconUri="" focusBitmapUri="pkg:/images/settingsfocus.png"
+                focusFootprintBitmapUri="" showFocusFootprint="false">
+                <Poster uri="pkg:/images/Rate.png" width="208" height="208" translation="[6,6]" />
+
+
+            </button>
+
+            <label id="sdkButtonTextLabel" text="WEB INDEXING" translation="[1385,370]"
+                color="#C8C5FF"
+                width="230" height="38">
+
+                <Font role="font" uri="pkg:/components/Fonts/ChangaOne-Regular.ttf" size="36" />
+
+            </label>
+
+            <button id="sdkButton" translation="[1390,426]" maxWidth="222" minWidth="222"
+                height="222"
+                iconUri="" focusedIconUri="" focusBitmapUri="pkg:/images/settingsfocus.png"
+                focusFootprintBitmapUri="" showFocusFootprint="false">
+
+                <Poster id="sdkButtonPoster" uri="pkg:/images/OptOut.png" width="208" height="208"
+                    translation="[6,6]" />
+
+
+            </button>
+
+            <label id="resetButtonTextLabel" text="RESET" translation="[1180,370]" color="#C8C5FF"
+                width="168" height="38">
+
+                <Font role="font" uri="pkg:/components/Fonts/ChangaOne-Regular.ttf" size="36" />
+
+            </label>
+
+            <button id="resetButton" translation="[1120,426]" maxWidth="222" minWidth="222"
+                height="222"
+                iconUri="" focusedIconUri="" focusBitmapUri="pkg:/images/settingsfocus.png"
+                focusFootprintBitmapUri="" showFocusFootprint="false">
+                <Poster uri="pkg:/images/ResetBtn.png" width="208" height="208" translation="[6,6]" />
+
+
+            </button>
+
+            <button id="quitSettings" focusedIconUri="" showFocusFootprint="false" iconUri=""
+                focusFootprintBitmapUri="" focusBitmapUri="pkg:/images/CloseButtonFocus.png"
+                height="139"
+                maxWidth="139" minWidth="139" translation="[1757,25]">
+                <Poster uri="pkg:/images/skipBtn.png" height="118" width="118" translation="[10,13]" />
+            </button>
+
+
+        </Group> -->
+
+
+        <Group id="ExitGroup" visible="false" translation="[0,0]">
+            <Poster uri="pkg:/images/Overlay.png" translation="[0,0]" width="1920" height="1080" />
+            <Poster id="ExitGroupPoster" uri="pkg:/images/Exit/exitGroup.png"
+                translation="[416,306]"
+                width="1088" height="469" />
+
+
+            <Button id="cancelExitButton" focusBitmapUri="pkg:/images/focus/start focus 1.png"
+                iconUri=""
+                focusedIconUri="" focusFootprintBitmapUri="" maxWidth="381" minWidth="381"
+                height="156"
+                translation="[590,611]">
+
+                <Poster id="ResumeAppBtnPoster" uri="pkg:/images/Exit/resumeBtn.png" width="340"
+                    height="116"
+                    translation="[18,20]" />
+
+
+            </Button>
+
+            <Button id="exitButton" focusBitmapUri="pkg:/images/focus/start focus 1.png" iconUri=""
+                focusedIconUri="" focusFootprintBitmapUri="" maxWidth="381" minWidth="381"
+                height="156"
+                translation="[990,611]">
+
+                <Poster id="ExitAppBtnPoster" uri="pkg:/images/Exit/exitBtn.png" width="340"
+                    height="116" translation="[18,20]" />
+            </Button>
+
+
+        </Group>
+
+    </children>
+</component>
