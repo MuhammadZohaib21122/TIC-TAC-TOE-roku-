@@ -23,7 +23,7 @@
             id="testLabel"
             height="44"
             width="0"
-            color = "0x232323"
+            color = "0xFFFF00"
             font="font:MediumBoldSystemFont"
             text="TIC TAC TOE"
             horizAlign="left"
