@@ -8,8 +8,10 @@
     <customization resumehandler="customResume" />
     <interface>
 
-
-        <field id="rowListData" type="node" />
+        <field id="currentPlayer" type="string" value="X" />
+        <field id="gameOver" type="boolean" value="false" />
+    
+    
         <field id="exitApp" type="boolean" alwaysNotify="true" />
 
 
@@ -17,87 +19,152 @@
 
     <children>
 
-
+<!-- 
         <Poster width="1920" height="1080" uri="pkg:/images/background.png" />
         <Label
             id="testLabel"
             height="44"
             width="0"
-            color = "0xFFFF00"
+            color="0xFFFF00"
             font="font:MediumBoldSystemFont"
             text="TIC TAC TOE"
             horizAlign="left"
             vertAlign="center"
             translation="[618,100]">
             <Font role="font" uri="pkg:/components/Fonts/ChangaOne-Regular.ttf" size="150" />
-        </Label>
+        </Label> -->
 
-        <Group id="boxGroup" visible="true" translation="[650,200]">
+        <Rectangle
+            id="background"
+            width="1280"
+            height="720"
+            color="0xDE3163">
+            <Label
+                id="gameTitle"
+                text="Tic Tac Toe"
+                font="font:LargeBoldSystemFont"
+                translation="[590, 50]"
+                color="0xFFFF00" />
+            <Rectangle
+                id="gameBoard"
+                width="450"
+                height="450"
+                translation="[415, 135]"
+                color="0x6495ED">
+                <!-- Game grid lines -->
+                <Rectangle
+                    width="5"
+                    height="450"
+                    translation="[150, 0]"
+                    color="0x6bff33" />
+                <Rectangle
+                    width="5"
+                    height="450"
+                    translation="[300, 0]"
+                    color="0x6bff33" />
+                <Rectangle
+                    width="450"
+                    height="5"
+                    translation="[0, 150]"
+                    color="0x6bff33" />
+                <Rectangle
+                    width="450"
+                    height="5"
+                    translation="[0, 300]"
+                    color="0x6bff33" />
+
+                <!-- Game cells -->
+                <GameCell id="cell0" translation="[0, 0]" />
+                <GameCell id="cell1" translation="[150, 0]" />
+                <GameCell id="cell2" translation="[300, 0]" />
+                <GameCell id="cell3" translation="[0, 150]" />
+                <GameCell id="cell4" translation="[150, 150]" />
+                <GameCell id="cell5" translation="[300, 150]" />
+                <GameCell id="cell6" translation="[0, 300]" />
+                <GameCell id="cell7" translation="[150, 300]" />
+                <GameCell id="cell8" translation="[300, 300]" />
+            </Rectangle>
+            <Label
+                id="turnIndicator"
+                text="Player X's Turn"
+                font="font:MediumBoldSystemFont"
+                translation="[540, 620]"
+                color="0xFFFFFFFF" />
+            <Label
+                id="gameStatus"
+                text=""
+                font="font:MediumBoldSystemFont"
+                translation="[540, 660]"
+                color="0xFFFFFFFF" />
+        </Rectangle>
+
+
+        <!-- <Group id="boxGroup" visible="true" translation="[650,200]">
 
             <Button id="box1" focusable="true" iconUri=""
-                focusFootprintBitmapUri="pkg:/images/boxUF.png"
+                focusFootprintBitmapUri=""
                 focusedIconUri="" text="" visible="true" translation="[0,0]"
                 showFocusFootprint="true"
                 maxWidth="200" height="200" minWidth="200"
-                focusBitmapUri="pkg:/images/boxF.png" />
+                focusBitmapUri="" />
 
             <Button id="box2" focusable="true" iconUri=""
-                focusFootprintBitmapUri="pkg:/images/boxUF.png"
+                focusFootprintBitmapUri=""
                 focusedIconUri="" text="" visible="true" translation="[220,0]"
                 showFocusFootprint="true"
                 maxWidth="200" height="200" minWidth="200"
-                focusBitmapUri="pkg:/images/boxF.png" />
+                focusBitmapUri="" />
 
             <Button id="box3" focusable="true" iconUri=""
-                focusFootprintBitmapUri="pkg:/images/boxUF.png"
+                focusFootprintBitmapUri=""
                 focusedIconUri="" text="" visible="true" translation="[440,0]"
                 showFocusFootprint="true"
                 maxWidth="200" height="200" minWidth="200"
-                focusBitmapUri="pkg:/images/boxF.png" />
+                focusBitmapUri="" />
 
             <Button id="box4" focusable="true" iconUri=""
-                focusFootprintBitmapUri="pkg:/images/boxUF.png"
+                focusFootprintBitmapUri=""
                 focusedIconUri="" text="" visible="true" translation="[0,220]"
                 showFocusFootprint="true"
                 maxWidth="200" height="200" minWidth="200"
-                focusBitmapUri="pkg:/images/boxF.png" />
+                focusBitmapUri="" />
 
             <Button id="box5" focusable="true" iconUri=""
-                focusFootprintBitmapUri="pkg:/images/boxUF.png"
+                focusFootprintBitmapUri=""
                 focusedIconUri="" text="" visible="true" translation="[220,220]"
                 showFocusFootprint="true"
                 maxWidth="200" height="200" minWidth="200"
-                focusBitmapUri="pkg:/images/boxF.png" />
+                focusBitmapUri="" />
 
             <Button id="box6" focusable="true" iconUri=""
-                focusFootprintBitmapUri="pkg:/images/boxUF.png"
+                focusFootprintBitmapUri=""
                 focusedIconUri="" text="" visible="true" translation="[440,220]"
                 showFocusFootprint="true"
                 maxWidth="200" height="200" minWidth="200"
-                focusBitmapUri="pkg:/images/boxF.png" />
+                focusBitmapUri="" />
 
             <Button id="box7" focusable="true" iconUri=""
-                focusFootprintBitmapUri="pkg:/images/boxUF.png"
+                focusFootprintBitmapUri=""
                 focusedIconUri="" text="" visible="true" translation="[0,440]"
                 showFocusFootprint="true"
                 maxWidth="200" height="200" minWidth="200"
-                focusBitmapUri="pkg:/images/boxF.png" />
+                focusBitmapUri="" />
 
             <Button id="box8" focusable="true" iconUri=""
-                focusFootprintBitmapUri="pkg:/images/boxUF.png"
+                focusFootprintBitmapUri=""
                 focusedIconUri="" text="" visible="true" translation="[220,440]"
                 showFocusFootprint="true"
                 maxWidth="200" height="200" minWidth="200"
-                focusBitmapUri="pkg:/images/boxF.png" />
+                focusBitmapUri="" />
 
             <Button id="box9" focusable="true" iconUri=""
-                focusFootprintBitmapUri="pkg:/images/boxUF.png"
+                focusFootprintBitmapUri=""
                 focusedIconUri="" text="" visible="true" translation="[440,440]"
                 showFocusFootprint="true"
                 maxWidth="200" height="200" minWidth="200"
-                focusBitmapUri="pkg:/images/boxF.png" />
+                focusBitmapUri="" />
 
-        </Group>
+        </Group> -->
 
 
     </children>
