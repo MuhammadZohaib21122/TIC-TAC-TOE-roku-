@@ -1,54 +1,88 @@
-sub init()
-    m.boxes = [m.top.findNode("box1"), m.top.findNode("box2"), m.top.findNode("box3"),
-        m.top.findNode("box4"), m.top.findNode("box5"), m.top.findNode("box6"),
-    m.top.findNode("box7"), m.top.findNode("box8"), m.top.findNode("box9")]
-
-    for each box in m.boxes
-        box.observeField("buttonSelected", "onBoxSelected")
-    end for
-
+function init()
+    m.gameBoard = m.top.findNode("gameBoard")
+    m.turnIndicator = m.top.findNode("turnIndicator")
+    m.gameStatus = m.top.findNode("gameStatus")
+    
+    m.top.currentPlayer = "X"
+    m.top.gameOver = false
     m.board = ["", "", "", "", "", "", "", "", ""]
-    m.currentPlayer = "X"
-end sub
+    
+    initializeCells()
+    ' Set initial focus to first cell
+    m.top.findNode("cell0").setFocus(true)
+end function
 
-sub onBoxSelected(event as object)
-    box = event.getRoSGNode()
-    index = m.boxes.indexOf(box)
+function initializeCells()
+    for i = 0 to 8
+        cell = m.top.findNode("cell" + i.toStr())
+        cell.cellIndex = i
+        cell.observeField("value", "onCellSelected")
+    end for
+end function
 
-    if m.board[index] = "" then
-        m.board[index] = m.currentPlayer
-        box.text = m.currentPlayer
-
-        if checkWinner() then
-            print "Player " + m.currentPlayer + " wins!"
-            resetGame()
-        else
-            m.currentPlayer = "O"
-            if m.currentPlayer = "X" then m.currentPlayer = "O" else m.currentPlayer = "X"
+function onCellSelected(event) as boolean
+    if m.top.gameOver then return true
+    
+    node = event.GetRoSGNode()
+    if node <> invalid and node.cellIndex <> invalid then
+        index = node.cellIndex
+        
+        if m.board[index] = "" then
+            m.board[index] = m.top.currentPlayer
+            
+            if checkWinner() then
+                m.gameStatus.text = "Player " + m.top.currentPlayer + " wins!"
+                m.top.gameOver = true
+            else if isBoardFull() then
+                m.gameStatus.text = "It's a draw!"
+                m.top.gameOver = true
+            else
+                if m.top.currentPlayer = "X" then
+                    m.top.currentPlayer = "O"
+                else
+                    m.top.currentPlayer = "X"
+                end if
+                m.turnIndicator.text = "Player " + m.top.currentPlayer + "'s Turn"
+            end if
         end if
     end if
-end sub
+    return true
+end function
 
 function checkWinner() as boolean
-    winPatterns = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
-
+    ' Winning combinations
+    winPatterns = [
+        [0, 1, 2], [3, 4, 5], [6, 7, 8],  ' Rows
+        [0, 3, 6], [1, 4, 7], [2, 5, 8],  ' Columns
+        [0, 4, 8], [2, 4, 6]              ' Diagonals
+    ]
+    
     for each pattern in winPatterns
         if m.board[pattern[0]] <> "" and m.board[pattern[0]] = m.board[pattern[1]] and m.board[pattern[1]] = m.board[pattern[2]] then
             return true
         end if
     end for
-
+    
     return false
 end function
 
-sub resetGame()
-    m.board = ["", "", "", "", "", "", "", "", ""]
-    m.currentPlayer = "X"
-
-    for each box in m.boxes
-        box.text = ""
+function isBoardFull() as boolean
+    for each cell in m.board
+        if cell = "" then return false
     end for
-end sub
+    return true
+end function
+
+function onKeyEvent(key as string, press as boolean) as boolean
+    if press then
+        if key = "back"
+            return false
+        else if key = "OK"
+            return true
+        end if
+    end if
+    return true
+end function 
 
 
 
@@ -66,25 +100,9 @@ end sub
 '     m.box9 = m.top.findNode("box9")
 
 '     ' m.settingBtnMenu.observeField("buttonSelected", "SettingBtnSelected")
-'     ' m.settingBtnMenu.observeField("buttonSelected", "SettingBtnSelected")
-'     ' m.settingBtnMenu.observeField("buttonSelected", "SettingBtnSelected")
-'     ' m.settingBtnMenu.observeField("buttonSelected", "SettingBtnSelected")
-'     ' m.settingBtnMenu.observeField("buttonSelected", "SettingBtnSelected")
-'     ' m.settingBtnMenu.observeField("buttonSelected", "SettingBtnSelected")
-'     ' m.settingBtnMenu.observeField("buttonSelected", "SettingBtnSelected")
-'     ' m.settingBtnMenu.observeField("buttonSelected", "SettingBtnSelected")
-'     m.box1.observeField("buttonSelected", "box1Select")
 
 '     m.box1.setFocus(true)
-
-
 ' end sub
-
-' function box1Select()
-'     m.box1.text="X"
-' end function
-
-
 
 ' function onKeyEvent(key as string, press as boolean) as boolean
 
