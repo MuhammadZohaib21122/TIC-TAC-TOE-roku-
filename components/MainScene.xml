@@ -15,6 +15,9 @@
         <field id="launchArgs" type="assocarray" />
         <field id="rowListData" type="node" />
 
+        <field id="currentPlayer" type="string" value="X" />
+        <field id="gameOver" type="boolean" value="false" />
+
         <function name="ShowGameScreen" />
         <function name="CloseScreen" />
         <function name="ShowFirstScreen" />
