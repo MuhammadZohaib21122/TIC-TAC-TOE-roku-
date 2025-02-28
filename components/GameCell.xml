@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component name="GameCell" extends="Group">
+    <script type="text/brightscript" uri="pkg:/components/GameCell.brs" />
+    <interface>
+        <field id="cellIndex" type="integer" value="-1" />
+        <field id="value" type="string" value="" />
+    </interface>
+    <children>
+        <Rectangle
+            id="cellBackground"
+            width="145"
+            height="145"
+            color="0xFFFFFFFF">
+            <Label
+                id="cellValue"
+                width="145"
+                height="145"
+                horizAlign="center"
+                vertAlign="center"
+                font="font:LargeSystemFont"
+                color="0x020500" />
+        </Rectangle>
+    </children>
+</component> 
